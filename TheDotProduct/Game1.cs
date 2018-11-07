@@ -73,8 +73,6 @@ namespace TheDotProduct {
             spriteBatch.Begin();
 
             // Own implemention of projecting a vector onto a line
-            // TODO: Make our own coordinates system, so we can move the origin (0,0)(top-left of screen) to anywhere we want
-            // resource to do this (maybe): https://www.khanacademy.org/math/linear-algebra/alternate-bases/change-of-basis/v/linear-algebra-coordinates-with-respect-to-a-basis
             Vector2 origin = Vector2.Zero;
             //Vector2 origin = new Vector2(100, 300); // Origin;
             Vector2 pointB = new Vector2(origin.X + 700, origin.Y);
@@ -95,10 +93,9 @@ namespace TheDotProduct {
 
             // Vector Projection (without knowing the angle)
             Vector2 pointBNorm = new Vector2(pointB.X / magnitudeB, pointB.Y / magnitudeB); // Normalization
-            Console.WriteLine($"pointBNorm: {pointBNorm}");
             dotProduct = (pointA.X * pointBNorm.X) + (pointA.Y * pointBNorm.Y);
             Vector2 vectorProjection = pointBNorm * dotProduct;
-            float vectorProjectionLength = (float)Math.Sqrt(Math.Pow(vectorProjection.X, 2) + Math.Pow(vectorProjection.Y, 2));
+            float vectorProjectionLength = (float)Math.Sqrt(Math.Pow((vectorProjection.X - pointA.X), 2) + Math.Pow((vectorProjection.Y - pointA.Y), 2));
 
             // Another way of getting the vector projection (if you know the angle)
             //float scalarProjectionLength = magnitudeA * (float)Math.Cos(angleBetweenAB.Radians);
