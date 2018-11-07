@@ -25,7 +25,7 @@ namespace TheDotProduct {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
 
             base.Initialize();
         }
@@ -109,10 +109,24 @@ namespace TheDotProduct {
             spriteBatch.DrawLine(origin, pointA, Color.LightGreen, 4f);
             spriteBatch.DrawLine(pointA, vectorProjection, Color.Red, 4f);
 
-            spriteBatch.DrawString(font, $"Angle: {angleBetweenAB.Degrees}", new Vector2(300, 400), Color.Indigo);
-            spriteBatch.DrawString(font, $"Magnitude A: {magnitudeA}", new Vector2(300, 420), Color.LightGreen);
-            spriteBatch.DrawString(font, $"Magnitude B: {magnitudeB}", new Vector2(300, 440), Color.Black);
-            spriteBatch.DrawString(font, $"Vector Projecten length: {vectorProjectionLength}", new Vector2(300, 460), Color.Red);
+            Vector2 offset = new Vector2(5, 5);
+            spriteBatch.DrawPoint(origin, Color.Red, 10f);
+            spriteBatch.DrawString(font, "origin", origin + offset, Color.Black);
+            spriteBatch.DrawPoint(pointA, Color.Red, 10f);
+            spriteBatch.DrawString(font, "pointA", pointA + offset, Color.Black);
+            spriteBatch.DrawPoint(pointB, Color.Red, 10f);
+            spriteBatch.DrawString(font, "pointB", pointB + offset, Color.Black);
+            spriteBatch.DrawPoint(vectorProjection, Color.Red, 10f);
+            spriteBatch.DrawString(font, "pointC", vectorProjection + offset, Color.Black);
+
+            spriteBatch.DrawString(font, $"Angle: {angleBetweenAB.Degrees}", new Vector2(550, 400), Color.Indigo);
+            spriteBatch.DrawString(font, $"Magnitude A: {magnitudeA}", new Vector2(550, 420), Color.LightGreen);
+            spriteBatch.DrawString(font, $"Magnitude B: {magnitudeB}", new Vector2(550, 440), Color.Black);
+            spriteBatch.DrawString(font, $"Vector Projecten length: {vectorProjectionLength}", new Vector2(550, 460), Color.Red);
+
+            spriteBatch.DrawString(font, "Computes the length between pointA and pointC\n" +
+                "where pointC can be anywhere on vectorB\n" +
+                "using Dot Product and Vector Projection", new Vector2(10, 420), Color.Black);
 
             spriteBatch.End();
 
